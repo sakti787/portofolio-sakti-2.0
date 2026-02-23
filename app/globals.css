@@ -1,0 +1,353 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-neon-cyan: #22d3ee;
+  --color-neon-teal: #2dd4bf;
+  --color-neon-purple: #a78bfa;
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ===== Light Mode ===== */
+:root {
+  --background: #f0f4f8;
+  --foreground: #1e293b;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --hero-blob-1: rgba(34, 211, 238, 0.15);
+  --hero-blob-2: rgba(167, 139, 250, 0.12);
+  --section-bg-alt: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== Dark Mode ===== */
+.dark {
+  --background: #0b1121;
+  --foreground: #e2e8f0;
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(51, 65, 85, 0.4);
+  --hero-blob-1: rgba(34, 211, 238, 0.08);
+  --hero-blob-2: rgba(167, 139, 250, 0.06);
+  --section-bg-alt: rgba(15, 23, 42, 0.4);
+}
+
+/* ===== Smooth Scroll ===== */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: transparent;
+  color: var(--foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: color 0.3s ease;
+}
+
+/* ===== Background Decorative Gradient ===== */
+.bg-gradient-base {
+  background: transparent;
+  position: relative;
+}
+
+/* ===== Decorative Blobs ===== */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--hero-blob-1);
+  top: -100px;
+  left: -100px;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--hero-blob-2);
+  bottom: -80px;
+  right: -80px;
+}
+
+/* ===== Glassmorphism Utility ===== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-strong {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ===== Neon Glow Utilities ===== */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(34, 211, 238, 0.1);
+}
+
+.glow-cyan-sm {
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.25);
+}
+
+.glow-purple {
+  box-shadow: 0 0 15px rgba(167, 139, 250, 0.3), 0 0 30px rgba(167, 139, 250, 0.1);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+/* ===== Neon Border on Hover ===== */
+.neon-border-hover {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.neon-border-hover:hover {
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.15);
+}
+
+/* ===== Custom Scrollbar (dark mode) ===== */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+/* ===== Toast Animation ===== */
+@keyframes toast-in {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-toast {
+  animation: toast-in 0.3s ease-out;
+}
+
+/* ===== Truncate multi-line ===== */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================================
+   WALLPAPER — Animated Background System
+   ========================================================== */
+
+/* Container: fixed, full-screen, behind everything */
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Shared layer base */
+.wp-base,
+.wp-dots,
+.wp-grid,
+.wp-glow,
+.wp-vignette {
+  position: absolute;
+  inset: 0;
+}
+
+/* --- Base Gradient Layer --- */
+.wp-base {
+  background: linear-gradient(160deg,
+      #eef2f7 0%,
+      #f0f4f8 30%,
+      #e8edf5 60%,
+      #f5f7fa 100%);
+  transition: background 0.5s ease;
+}
+
+.dark .wp-base {
+  background: linear-gradient(160deg,
+      #070d1a 0%,
+      #0b1121 30%,
+      #0d1530 60%,
+      #080e1e 100%);
+}
+
+/* --- Dot Pattern Layer --- */
+.wp-dots {
+  background-image: radial-gradient(circle,
+      rgba(30, 41, 59, 0.1) 1.2px,
+      transparent 1.2px);
+  background-size: 24px 24px;
+  animation: patternDrift 40s linear infinite;
+}
+
+.dark .wp-dots {
+  background-image: radial-gradient(circle,
+      rgba(148, 163, 184, 0.18) 1.2px,
+      transparent 1.2px);
+}
+
+/* --- Grid Line Layer --- */
+.wp-grid {
+  background-image:
+    linear-gradient(to right,
+      rgba(30, 41, 59, 0.1) 0.5px,
+      transparent 0.5px),
+    linear-gradient(to bottom,
+      rgba(30, 41, 59, 0.1) 0.5px,
+      transparent 0.5px);
+  background-size: 48px 48px;
+  animation: patternDrift 55s linear infinite reverse;
+}
+
+.dark .wp-grid {
+  background-image:
+    linear-gradient(to right,
+      rgba(148, 163, 184, 0.10) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(148, 163, 184, 0.10) 1px,
+      transparent 1px);
+}
+
+/* --- Neon Glow Spots (very subtle) --- */
+.wp-glow {
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.04;
+  transition: opacity 0.5s ease;
+}
+
+.wp-glow--cyan {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #22d3ee 0%, transparent 70%);
+  top: -10%;
+  right: -5%;
+  animation: glowPulse 30s ease-in-out infinite;
+}
+
+.wp-glow--purple {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #a78bfa 0%, transparent 70%);
+  bottom: -8%;
+  left: -5%;
+  animation: glowPulse 35s ease-in-out infinite reverse;
+}
+
+.dark .wp-glow {
+  opacity: 0.06;
+}
+
+/* In light mode reduce glow further */
+:root:not(.dark) .wp-glow {
+  opacity: 0.03;
+}
+
+/* --- Vignette Overlay --- */
+.wp-vignette {
+  background: radial-gradient(ellipse at center,
+      transparent 40%,
+      rgba(0, 0, 0, 0.06) 100%);
+}
+
+.dark .wp-vignette {
+  background: radial-gradient(ellipse at center,
+      transparent 35%,
+      rgba(0, 0, 0, 0.25) 100%);
+}
+
+/* --- Keyframes --- */
+@keyframes patternDrift {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 56px 56px;
+  }
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.04;
+  }
+
+  50% {
+    transform: translate(15px, -10px) scale(1.05);
+    opacity: 0.07;
+  }
+}
+
+.dark .wp-glow--cyan {
+  animation-name: glowPulseDark;
+}
+
+.dark .wp-glow--purple {
+  animation-name: glowPulseDark;
+}
+
+@keyframes glowPulseDark {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.05;
+  }
+
+  50% {
+    transform: translate(15px, -10px) scale(1.05);
+    opacity: 0.08;
+  }
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+
+  .wp-dots,
+  .wp-grid,
+  .wp-glow--cyan,
+  .wp-glow--purple {
+    animation: none !important;
+  }
+}
