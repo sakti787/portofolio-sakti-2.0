@@ -46,10 +46,19 @@ const quickLinks = [
             </svg>
         ),
     },
+    {
+        label: "WhatsApp",
+        href: "https://wa.me/6285179746454",
+        icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+        ),
+    },
 ];
 
 export default function Contact() {
-    const [form, setForm] = useState({ name: "", email: "", message: "" });
+    const [form, setForm] = useState({ name: "", service: "", message: "" });
     const [toast, setToast] = useState(false);
     const [errors, setErrors] = useState<Record<string, boolean>>({});
 
@@ -59,7 +68,7 @@ export default function Contact() {
         // Validation
         const newErrors: Record<string, boolean> = {};
         if (!form.name.trim()) newErrors.name = true;
-        if (!form.email.trim()) newErrors.email = true;
+        if (!form.service.trim()) newErrors.service = true;
         if (!form.message.trim()) newErrors.message = true;
 
         if (Object.keys(newErrors).length > 0) {
@@ -69,13 +78,12 @@ export default function Contact() {
 
         setErrors({});
 
-        // Build mailto link
-        const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
-        const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-        window.open(`mailto:sakti787@gmail.com?subject=${subject}&body=${body}`, "_self");
+        // Build WhatsApp link
+        const text = encodeURIComponent(`Halo Sakti, saya ${form.name}.\nSaya tertarik dengan layanan: ${form.service}\n\nPesan:\n${form.message}`);
+        window.open(`https://wa.me/6285179746454?text=${text}`, "_blank");
 
         setToast(true);
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", service: "", message: "" });
         setTimeout(() => setToast(false), 3000);
     };
 
@@ -142,7 +150,7 @@ export default function Contact() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                     >
                         <h3 className="text-sm font-semibold text-foreground/50 uppercase tracking-wider mb-6">
-                            Send a Message
+                            Kirim Pesan Whatsapp Untuk Jasa Pembuatan Website atau lainnya
                         </h3>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
@@ -162,19 +170,21 @@ export default function Contact() {
                                 )}
                             </div>
                             <div>
-                                <input
-                                    type="email"
-                                    placeholder="Your Email *"
-                                    value={form.email}
+                                <select
+                                    value={form.service}
                                     onChange={(e) => {
-                                        setForm({ ...form, email: e.target.value });
-                                        if (errors.email) setErrors({ ...errors, email: false });
+                                        setForm({ ...form, service: e.target.value });
+                                        if (errors.service) setErrors({ ...errors, service: false });
                                     }}
-                                    className={`w-full px-4 py-3 rounded-xl glass text-sm bg-transparent outline-none transition-all duration-200 placeholder:text-foreground/30 focus:ring-2 focus:ring-neon-cyan/30 ${errors.email ? "ring-2 ring-red-400/50" : "neon-border-hover"
+                                    className={`w-full px-4 py-3 rounded-xl glass text-sm bg-transparent outline-none transition-all duration-200 text-foreground focus:ring-2 focus:ring-neon-cyan/30 appearance-none ${errors.service ? "ring-2 ring-red-400/50" : "neon-border-hover"
                                         }`}
-                                />
-                                {errors.email && (
-                                    <p className="text-red-400 text-xs mt-1">Email is required</p>
+                                >
+                                    <option value="" disabled className="bg-background text-foreground">Pilih Layanan *</option>
+                                    <option value="Jasa Pembuatan Website" className="bg-background text-foreground">Jasa Pembuatan Website</option>
+                                    <option value="Lainnya" className="bg-background text-foreground">Lainnya</option>
+                                </select>
+                                {errors.service && (
+                                    <p className="text-red-400 text-xs mt-1">Service is required</p>
                                 )}
                             </div>
                             <div>
