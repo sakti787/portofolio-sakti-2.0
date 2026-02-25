@@ -11,13 +11,41 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "rental-mobil-landing",
+    title: "Rental Mobil Landing Page",
+    description:
+      "Landing page profesional untuk usaha rental mobil di Indonesia dengan fokus konversi: showcase armada & harga, layanan (lepas kunci/sopir), testimoni, FAQ, CTA booking cepat via WhatsApp (floating button), serta embed Google Maps untuk lokasi dan navigasi.",
+    image: "/projects/screenshots/website-rental.png", // Ganti dengan path screenshot project rental Anda
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Framer Motion"
+    ],
+    liveUrl: "https://test-rental-zeta.vercel.app//", // Ganti dengan URL live Anda
+    //sourceUrl: "https://github.com/sakti787/test-rental", // Ganti dengan URL repository GitHub Anda
+    featured: true
+  },
+  {
     id: "event-h",
     title: "Event-H",
     description: "Website company profile untuk event organizer profesional di Indonesia, menonjolkan layanan corporate/MICE, portofolio, testimoni, proses kerja, dan CTA Request Proposal/WhatsApp.",
     image: "/projects/screenshots/website-event-h.png", // Ganti dengan path screenshot Event-H Anda
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "Sanity", "Framer Motion"],
     liveUrl: "https://event-h-two.vercel.app/", // Ganti dengan URL live Anda
-    sourceUrl: "https://github.com/sakti787/event-h", // Ganti dengan URL repository GitHub Anda
+    //sourceUrl: "https://github.com/sakti787/event-h", // Ganti dengan URL repository GitHub Anda
+    featured: true
+  },
+  {
+    id: "optik-jaya",
+    title: "Optik Jaya",
+    description:
+      "Landing page untuk usaha optik di Indonesia, menonjolkan layanan cek mata, katalog frame & lensa, promo, testimoni, lokasi & jam operasional, serta CTA Booking/Konsultasi via WhatsApp. Termasuk form booking yang mengarah ke WhatsApp.",
+    image: "/projects/screenshots/website-optik.png", // Ganti dengan path screenshot proyek optik Anda
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "Framer Motion"],
+    liveUrl: "https://test-optik.vercel.app/", // Ganti dengan URL live Anda
+    //sourceUrl: "https://github.com/sakti787/test-optik", // Ganti dengan URL repository GitHub Anda
     featured: true
   },
   {
@@ -27,7 +55,7 @@ export const projects: Project[] = [
     image: "/projects/screenshots/website-petshop.png", // Ganti dengan path screenshot Muchu PetShop Anda
     technologies: ["Node.js", "Vite", "HTML", "CSS", "JavaScript"], // Sesuaikan jika Anda pakai framework lain
     liveUrl: "https://pet-shop-static.vercel.app/", // Ganti dengan URL live Anda
-    sourceUrl: "https://github.com/sakti787/pet-shop-static", // Ganti dengan URL repository GitHub Anda
+    //sourceUrl: "https://github.com/sakti787/pet-shop-static", // Ganti dengan URL repository GitHub Anda
     featured: true
   },
   {
@@ -38,8 +66,9 @@ export const projects: Project[] = [
     image: "/projects/screenshots/website-helpdesk.png", // Opsional: taruh screenshot di public/projects/screenshots/
     technologies: ["Laravel", "PHP", "Inertia.js", "Vue 3", "Naive UI", "MySQL", "WebSockets", "REST API"],
     sourceUrl: "https://github.com/sakti787/helpdesk-realtime-laravel",
-    featured: true
+    featured: false
   },
+  /*
   {
     id: "uangsakti 2.0",
     title: "uangsakti 2.0",
@@ -92,5 +121,5 @@ export const projects: Project[] = [
     liveUrl: "https://portofolio-sakti.vercel.app/",
     sourceUrl: "https://github.com/sakti787/portofolio-sakti",
     featured: false
-  },
+  }, */
 ];
