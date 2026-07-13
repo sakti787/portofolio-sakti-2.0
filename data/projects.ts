@@ -11,6 +11,26 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "zypos",
+    title: "Zypos",
+    description:
+      "Aplikasi Point of Sale (POS) dan manajemen inventori toko ritel dengan fitur kasir dinamis (cart system), peringatan stok otomatis, visualisasi tata letak rak interaktif berbasis grid-map, kalkulasi laporan keuangan otomatis dengan ekspor PDF, serta modul backup & restore database via Excel.",
+    image: "/projects/screenshots/website-zypos.png", // Ganti dengan path screenshot project Zypos Anda
+    technologies: [
+      "Laravel",
+      "PHP",
+      "Tailwind CSS",
+      "Alpine.js",
+      "Vite",
+      "MySQL",
+      "PhpSpreadsheet",
+      "DomPDF"
+    ],
+    sourceUrl: "https://github.com/sakti787/zypos",
+    liveUrl: "https://zypos.my.id",
+    featured: true
+  },
+  {
     id: "rental-mobil-landing",
     title: "Rental Mobil Landing Page",
     description:
